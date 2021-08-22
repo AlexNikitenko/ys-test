@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "/^[a-z ,.'-]+$/i",
+      "maxLength": 20,
+      "minLength": 2
+    },
+    "surname": {
+      "type": "string",
+      "pattern": "/^[a-z ,.'-]+$/i",
+      "maxLength": 20,
+      "minLength": 2
+    },
+    "email": {
+      "type": "string",
+      "pattern": "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
+      "maxLength": 30,
+      "minLength": 10
+    }
+  }
+}
