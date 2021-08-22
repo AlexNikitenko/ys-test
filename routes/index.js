@@ -33,12 +33,12 @@ router.get('/', controllers.showIndex);
 
 router.get('/users', controllers.showAllUsers);
 
+router.get('/user/:id', controllers.showUserById);
+
 router.post('/addUser', upload.single('photo'), validator('register'), controllers.addNewUser);
 
-router.post('/user/:id', upload.none(), controllers.showUserById);
+router.put('/user/:id', upload.single('photo'), validator('register'), controllers.updateUser);
 
-router.put('/user/upd/:id', upload.single('photo'), validator('register'), controllers.updateUser);
-
-router.delete('/user/del/:id', upload.none(), controllers.delUser);
+router.delete('/user/:id', upload.none(), controllers.delUser);
 
 module.exports = router;

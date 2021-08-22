@@ -3,13 +3,13 @@
   "properties": {
     "name": {
       "type": "string",
-      "pattern": "/^[a-z ,.'-]+$/i",
+      "pattern": "^[A-Za-z][-a-zA-Z]+$",
       "maxLength": 20,
       "minLength": 2
     },
     "surname": {
       "type": "string",
-      "pattern": "/^[a-z ,.'-]+$/i",
+      "pattern": "^[A-Za-z][-a-zA-Z]+$",
       "maxLength": 20,
       "minLength": 2
     },

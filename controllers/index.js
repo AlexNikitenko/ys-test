@@ -1,13 +1,11 @@
 const Users = require('../model/Users');
 const sharp = require('sharp');
-const fs = require('fs');
-
+const fsPromises = require('fs').promises;
 
 //Show Index Route
 const showIndex = (req, res) => {
   res.render('index');
 };
-
 
 //Show all users from DB
 const showAllUsers = async (req, res) => {
@@ -15,14 +13,17 @@ const showAllUsers = async (req, res) => {
   res.json(usersArr);
 };
 
-
 //Add new User
-
 const addNewUser = async (req, res) => {
-  const image = fs.readFileSync(`tmp/${req.file.filename}`);
-  await sharp(image)
-        .resize(200, 200)
-        .toFile(`photos/${req.file.filename}`)
+  const image = await fsPromises.readFile(`tmp/${req.file.filename}`);
+  
+  try {
+    await sharp(image)
+          .resize(200, 200)
+          .toFile(`photos/${req.file.filename}`);
+  } catch(err) {
+    console.log('Error', err);
+  }
 
   const newUser = new Users(req.body);
   newUser.photoUrl = `${req.file.filename}`
@@ -41,7 +42,6 @@ const addNewUser = async (req, res) => {
 };
 
 //Find User by ID and show json
-
 const showUserById = async (req, res) => {
   const { id } = req.params;
   if (!id || !id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -91,10 +91,15 @@ const updateUser = async (req, res) => {
   const { id } = req.params;
   const { name, surname, email } = req.body;
 
-  const image = fs.readFileSync(`tmp/${req.file.filename}`, () => {});
-  await sharp(image)
-        .resize(200, 200)
-        .toFile(`photos/${req.file.filename}`)
+  const image = await fsPromises.readFile(`tmp/${req.file.filename}`, () => {});
+
+  try {
+    await sharp(image)
+          .resize(200, 200)
+          .toFile(`photos/${req.file.filename}`);
+  } catch(err) {
+    console.log('Error', err);
+  }
 
   photoUrl = `${req.file.filename}`;
 

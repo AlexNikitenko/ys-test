@@ -6,12 +6,14 @@ module.exports = new Schema({
     type: String,
     minLength: 2,
     maxLength: 20,
+    match: [/^[A-Za-z][-a-zA-Z]+$/],
     required: true,
   },
   surname: {
     type: String,
     minLength: 2,
     maxLength: 20,
+    match: [/^[A-Za-z][-a-zA-Z]+$/],
     required: true,
   },
   email: {
