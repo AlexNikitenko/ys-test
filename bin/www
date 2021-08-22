@@ -7,7 +7,6 @@
 const app = require('../app');
 const debug = require('debug')('ys-test:server');
 const http = require('http');
-const path = require('path');
 const config = require('../config.json');
 
 /**
